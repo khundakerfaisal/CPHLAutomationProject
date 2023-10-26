@@ -91,9 +91,10 @@ public class CPHLlocalPo {
 
 		Thread.sleep(1000);
 
-		System.out.println("Local Purchase successfully created");
+		System.out.println("Local Po successfully created");
 		Thread.sleep(1000);
 		driver.quit();
+		
 
 	}
 
