@@ -43,9 +43,9 @@ public class CPHLSitePo {
 
 		// Site purchase order create button click
 
-//		WebElement sitePoCreateButton = driver.findElement(By.xpath("//button[@data-original-title='Create record']"));
-//		sitePoCreateButton.click();
-//		Thread.sleep(3000);
+		WebElement sitePoCreateButton = driver.findElement(By.xpath("//button[@data-original-title='Create record']"));
+		sitePoCreateButton.click();
+		Thread.sleep(3000);
 
 		// Site purchase order vendor selection
 
