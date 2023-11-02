@@ -45,14 +45,6 @@ public class CPHLPI {
 		PiCreated.click();
 		Thread.sleep(3000);
 
-//		WebElement purchaseBase = driver.findElement(By.xpath("//select[@name='purchase_base']"));
-//		purchaseBase.click();
-//		Thread.sleep(2000);
-//		Select purchaseBaseDropdownselection = new Select(purchaseBase);
-//		purchaseBaseDropdownselection.selectByVisibleText("Comparative Statement");
-//
-//		Thread.sleep(2000);
-//
 		WebElement VendorDropdownSelect = driver.findElement(By.xpath("//div[@name='partner_id']"));
 		VendorDropdownSelect.click();
 		Thread.sleep(2000);
@@ -64,15 +56,10 @@ public class CPHLPI {
 		WebElement PoDropdownSelect = driver.findElement(By.xpath("//div[@name='purchase_order_ids']"));
 		PoDropdownSelect.click();
 
-//		
-//		PoDropdownSelect.sendKeys(Keys.DOWN);
-//		PoDropdownSelect.sendKeys(Keys.ENTER);
-//		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		WebElement PoDropdownValueSelect = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='ui-id-5']/li[1]/a")));
-//		WebElement PoDropdownValueSelect = driver.findElement(By.xpath("//ul[@id='ui-id-5']/li[1]/a"));
 		PoDropdownValueSelect.click();
 		Thread.sleep(2000);
 
@@ -89,11 +76,7 @@ public class CPHLPI {
 		piColumn.sendKeys("Pi-2023-00002");
 		Thread.sleep(2000);
 
-//		WebDriverWait waitForeignPO = new WebDriverWait(driver, Duration.ofSeconds(20)); // Adjust the timeout as needed
-//		WebElement agreementPObudgetselect = waitForeignPO
-//				.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='ui-id-5']/li[3]/a")));
-//		agreementPObudgetselect.click();
-//		Thread.sleep(2000);
+
 		
 //		AutoGenerateNumber function= new AutoGenerateNumber(driver);
 //		function.generateUniqueProformaNumber();
@@ -102,31 +85,13 @@ public class CPHLPI {
 
 
 		WebElement ProformaSubmit = driver.findElement(By.xpath("//button[@title='Save record']")); // RFQ final
-		// submission
+																									// submission
 		ProformaSubmit.click();
 		Thread.sleep(2000);
-//
-//		//////////////////// Local PO approval
-//		//////////////////// start//////////////////////////////////////////////////
-//		WebElement ForeignPoSCMapproval = driver.findElement(By.xpath("//button[@name='send_for_scm_approval']"));
-//		ForeignPoSCMapproval.click();
-//
-//		Thread.sleep(1000);
-//
-//		WebElement ForeignPoScmCooapproval = driver.findElement(By.xpath("//button[@name='send_for_scm_coo_approval']"));
-//		ForeignPoScmCooapproval.click();
-//
-//		Thread.sleep(1000);
-//
-//		WebElement ForeignPoConfirmButton = driver.findElement(By.xpath("//button[@name='button_confirm']"));
-//		ForeignPoConfirmButton.click();
-//
-//		Thread.sleep(1000);
-//
-//		System.out.println("Foreign Po successfully created");
-//		Thread.sleep(1000);
-//		driver.quit();
 
+
+		
+		System.out.println("Pi created successfully");
 	}
 
 }

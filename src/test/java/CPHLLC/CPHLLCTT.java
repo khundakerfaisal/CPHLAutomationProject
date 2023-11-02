@@ -82,6 +82,8 @@ public class CPHLLCTT {
 		// submission
 		LCttSubmit.click();
 		Thread.sleep(2000);
+		
+		System.out.println("LC created successfully");
 
 
 	}
