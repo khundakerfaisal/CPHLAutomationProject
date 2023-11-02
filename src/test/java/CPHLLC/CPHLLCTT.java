@@ -55,7 +55,7 @@ public class CPHLLCTT {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		WebElement LcDropdownValueSelect = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@class='ui-menu-item'][1]/a")));
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='ui-id-5']//li[1]/a")));
 //		WebElement PoDropdownValueSelect = driver.findElement(By.xpath("//ul[@id='ui-id-5']/li[1]/a"));
 		LcDropdownValueSelect.click();
 		Thread.sleep(2000);
@@ -63,7 +63,7 @@ public class CPHLLCTT {
 		
 		WebElement LcAutoNumberColumn = driver.findElement(
 				By.xpath("//input[@class='o_field_char o_field_widget o_quick_editable o_input o_required_modifier']"));
-		LcAutoNumberColumn.sendKeys("LC/TT-2023-00001");
+		LcAutoNumberColumn.sendKeys("LC/TT-2023-00002");
 		Thread.sleep(2000);
 
 //		WebDriverWait waitForeignPO = new WebDriverWait(driver, Duration.ofSeconds(20)); // Adjust the timeout as needed
