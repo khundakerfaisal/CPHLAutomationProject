@@ -15,8 +15,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CPHLPI {
 
-
-
 	public static void main(String[] args) throws InterruptedException {
 		WebDriver driver = new ChromeDriver();
 		ChromeOptions Option = new ChromeOptions();
@@ -85,16 +83,21 @@ public class CPHLPI {
 		WebElement CurrencyDropdownValueSelect = driver.findElement(By.xpath("//a[text()='USD']"));
 		CurrencyDropdownValueSelect.click();
 		Thread.sleep(2000);
-//
+		
+		WebElement piColumn = driver.findElement(
+				By.xpath("//input[@class='o_field_char o_field_widget o_quick_editable o_input o_required_modifier']"));
+		piColumn.sendKeys("Pi-2023-00002");
+		Thread.sleep(2000);
+
 //		WebDriverWait waitForeignPO = new WebDriverWait(driver, Duration.ofSeconds(20)); // Adjust the timeout as needed
 //		WebElement agreementPObudgetselect = waitForeignPO
 //				.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='ui-id-5']/li[3]/a")));
 //		agreementPObudgetselect.click();
 //		Thread.sleep(2000);
 		
-		AutoGenerateNumber function= new AutoGenerateNumber(driver);
-		function.generateUniqueProformaNumber();
-		Thread.sleep(2000);
+//		AutoGenerateNumber function= new AutoGenerateNumber(driver);
+//		function.generateUniqueProformaNumber();
+//		Thread.sleep(2000);
 
 
 
@@ -125,6 +128,5 @@ public class CPHLPI {
 //		driver.quit();
 
 	}
-
 
 }
