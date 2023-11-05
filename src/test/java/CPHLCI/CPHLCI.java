@@ -1,4 +1,4 @@
-package CPHLLC;
+package CPHLCI;
 
 import java.time.Duration;
 
@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CPHLLCTT {
+public class CPHLCI {
 
 	public static void main(String[] args) throws InterruptedException {
 		WebDriver driver = new ChromeDriver();
@@ -34,44 +34,35 @@ public class CPHLLCTT {
 
 		// Agreement PO start
 
-		driver.findElement(By.xpath("//a[@data-menu-xmlid='cphl_foreign_purchase.menu_cphl_lc_details']"))
+		driver.findElement(By.xpath("//a[@data-menu-xmlid='cphl_foreign_purchase.menu_cphl_commercial_invoice']"))
 				.click();
 		Thread.sleep(2000);
 
-		WebElement LcCreated = driver.findElement(By.xpath("//button[@data-original-title='Create record']"));
-		LcCreated.click();
+		WebElement CICreated = driver.findElement(By.xpath("//button[@data-original-title='Create record']"));
+		CICreated.click();
 		Thread.sleep(3000);
 
-		WebElement VendorDropdownSelect = driver.findElement(By.xpath("//div[@name='partner_id']"));
-		VendorDropdownSelect.click();
-		Thread.sleep(2000);
 
-		WebElement VendorDropdownValueSelect = driver.findElement(By.xpath("//a[text()='Chowdhury Motors']"));
-		VendorDropdownValueSelect.click();
-		Thread.sleep(2000);
 
-		WebElement LcDropdownSelect = driver.findElement(By.xpath("//div[@name='proforma_invoice_ids']"));
-		LcDropdownSelect.click();
+		WebElement lcNoDropdownSelect = driver.findElement(By.xpath("//div[@name='lc_details_id']"));
+		lcNoDropdownSelect.click();
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		WebElement LcDropdownValueSelect = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='ui-id-5']//li[1]/a")));
+		WebElement LcNoDropdownValueSelect = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@class='ui-menu-item'][1]/a")));
 //		WebElement PoDropdownValueSelect = driver.findElement(By.xpath("//ul[@id='ui-id-5']/li[1]/a"));
-		LcDropdownValueSelect.click();
+		LcNoDropdownValueSelect.click();
 		Thread.sleep(2000);
 
 		
-		WebElement LcAutoNumberColumn = driver.findElement(
+		WebElement CIAutoNumberColumn = driver.findElement(
 				By.xpath("//input[@class='o_field_char o_field_widget o_quick_editable o_input o_required_modifier']"));
-		LcAutoNumberColumn.clear();
-		LcAutoNumberColumn.sendKeys("LC/TT-2023-00002");
+		
+		CIAutoNumberColumn.clear();
+		CIAutoNumberColumn.sendKeys("CI-2023-00001");
 		Thread.sleep(2000);
 
-//		WebDriverWait waitForeignPO = new WebDriverWait(driver, Duration.ofSeconds(20)); // Adjust the timeout as needed
-//		WebElement agreementPObudgetselect = waitForeignPO
-//				.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='ui-id-5']/li[3]/a")));
-//		agreementPObudgetselect.click();
-//		Thread.sleep(2000);
+
 		
 //		AutoGenerateNumber function= new AutoGenerateNumber(driver);
 //		function.generateUniqueProformaNumber();
@@ -79,13 +70,12 @@ public class CPHLLCTT {
 
 
 
-		WebElement LCttSubmit = driver.findElement(By.xpath("//button[@title='Save record']")); // RFQ final
-		// submission
-		LCttSubmit.click();
+		WebElement CISubmit = driver.findElement(By.xpath("//button[@title='Save record']")); // CI final
+																							// submission
+		CISubmit.click();
 		Thread.sleep(2000);
 		
-		System.out.println("LC created successfully");
-
+		System.out.println("CI created successfully");
 
 	}
 

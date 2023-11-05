@@ -73,7 +73,7 @@ public class CPHLPI {
 		
 		WebElement piColumn = driver.findElement(
 				By.xpath("//input[@class='o_field_char o_field_widget o_quick_editable o_input o_required_modifier']"));
-		piColumn.sendKeys("Pi-2023-00002");
+		piColumn.sendKeys("Pi-2023-00001");
 		Thread.sleep(2000);
 
 
