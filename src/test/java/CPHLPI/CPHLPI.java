@@ -2,6 +2,9 @@ package CPHLPI;
 
 import java.awt.RenderingHints.Key;
 import java.time.Duration;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -56,7 +59,6 @@ public class CPHLPI {
 		WebElement PoDropdownSelect = driver.findElement(By.xpath("//div[@name='purchase_order_ids']"));
 		PoDropdownSelect.click();
 
-
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		WebElement PoDropdownValueSelect = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='ui-id-5']/li[1]/a")));
@@ -70,28 +72,49 @@ public class CPHLPI {
 		WebElement CurrencyDropdownValueSelect = driver.findElement(By.xpath("//a[text()='USD']"));
 		CurrencyDropdownValueSelect.click();
 		Thread.sleep(2000);
-		
+
 		WebElement piColumn = driver.findElement(
 				By.xpath("//input[@class='o_field_char o_field_widget o_quick_editable o_input o_required_modifier']"));
-		piColumn.sendKeys("Pi-2023-00001");
+//		piColumn.sendKeys("Pi-2023-00001");
+		piColumn.clear();
+		piColumn.click();
+
+		Set<String> generatedNumbers = new HashSet<>();
+		Random random = new Random();
+
+		while (generatedNumbers.size() < 1) {
+			// Generate a random number
+			String newNumber = generatePIFormatNumber(2023, random.nextInt(1000000));
+
+			// Check for duplicates
+			if (!generatedNumbers.contains(newNumber)) {
+				// Add the unique number to the set
+				generatedNumbers.add(newNumber);
+
+				// Perform actions with the generated number, e.g., input it into a text field
+				WebElement numberInput = driver.findElement(By.xpath("//input[@name='name']"));
+				numberInput.sendKeys(newNumber);
+
+				// Press Enter to submit the value (modify as needed)
+				numberInput.sendKeys(Keys.RETURN);
+			}
+
+		}
+
 		Thread.sleep(2000);
-
-
-		
-//		AutoGenerateNumber function= new AutoGenerateNumber(driver);
-//		function.generateUniqueProformaNumber();
-//		Thread.sleep(2000);
-
-
 
 		WebElement ProformaSubmit = driver.findElement(By.xpath("//button[@title='Save record']")); // RFQ final
 																									// submission
 		ProformaSubmit.click();
 		Thread.sleep(2000);
 
-
-		
 		System.out.println("Pi created successfully");
+	}
+
+	public static String generatePIFormatNumber(int year, int sequence) {
+		String formattedYear = String.format("%04d", year);
+		String formattedSequence = String.format("%06d", sequence);
+		return "PI-" + formattedYear + "-" + formattedSequence;
 	}
 
 }
