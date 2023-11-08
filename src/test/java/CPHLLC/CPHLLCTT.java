@@ -1,8 +1,12 @@
 package CPHLLC;
 
 import java.time.Duration;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -34,8 +38,7 @@ public class CPHLLCTT {
 
 		// Agreement PO start
 
-		driver.findElement(By.xpath("//a[@data-menu-xmlid='cphl_foreign_purchase.menu_cphl_lc_details']"))
-				.click();
+		driver.findElement(By.xpath("//a[@data-menu-xmlid='cphl_foreign_purchase.menu_cphl_lc_details']")).click();
 		Thread.sleep(2000);
 
 		WebElement LcCreated = driver.findElement(By.xpath("//button[@data-original-title='Create record']"));
@@ -60,33 +63,39 @@ public class CPHLLCTT {
 		LcDropdownValueSelect.click();
 		Thread.sleep(2000);
 
-		
 		WebElement LcAutoNumberColumn = driver.findElement(
 				By.xpath("//input[@class='o_field_char o_field_widget o_quick_editable o_input o_required_modifier']"));
 		LcAutoNumberColumn.clear();
-		LcAutoNumberColumn.sendKeys("LC/TT-2023-00002");
+		LcAutoNumberColumn.click();
+//		LcAutoNumberColumn.sendKeys("LC/TT-2023-00002");
+		Set<String> generatesLCTTNumbers = new HashSet<>();
+		Random random = new Random();
+
+		while (generatesLCTTNumbers.size() < 1) {
+			String newNumber = generateLCTTFormatNumber(2023, random.nextInt(1000000));
+			if (!generatesLCTTNumbers.contains(newNumber)) {
+				generatesLCTTNumbers.add(newNumber);
+				WebElement numberInput = driver.findElement(By.xpath("//input[@name='name']"));
+				numberInput.sendKeys(newNumber);
+				// Press Enter to submit the value (modify as needed)
+				numberInput.sendKeys(Keys.RETURN);
+			}
+		}
 		Thread.sleep(2000);
-
-//		WebDriverWait waitForeignPO = new WebDriverWait(driver, Duration.ofSeconds(20)); // Adjust the timeout as needed
-//		WebElement agreementPObudgetselect = waitForeignPO
-//				.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='ui-id-5']/li[3]/a")));
-//		agreementPObudgetselect.click();
-//		Thread.sleep(2000);
-		
-//		AutoGenerateNumber function= new AutoGenerateNumber(driver);
-//		function.generateUniqueProformaNumber();
-//		Thread.sleep(2000);
-
-
 
 		WebElement LCttSubmit = driver.findElement(By.xpath("//button[@title='Save record']")); // RFQ final
 		// submission
 		LCttSubmit.click();
 		Thread.sleep(2000);
-		
+
 		System.out.println("LC created successfully");
 
+	}
 
+	public static String generateLCTTFormatNumber(int year, int sequence) {
+		String formattedYear = String.format("%04d", year);
+		String formattedSequence = String.format("%06d", sequence);
+		return "LC/TT-" + formattedYear + "-" + formattedSequence;
 	}
 
 }
