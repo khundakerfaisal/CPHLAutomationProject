@@ -62,23 +62,21 @@ public class CPHLCI {
 		CIAutoNumberColumn.clear();
 		CIAutoNumberColumn.click();
 		
-		Set<String> generatesNumbers =new HashSet<>();
+		Set<String> generatesCINumbers =new HashSet<>();
 		Random random = new Random();
-//		Set<String> generatedNumbers = new HashSet<>();
-//		Random random = new Random();
 
-		while (generatesNumbers.size() < 1) {
+		while (generatesCINumbers.size() < 1) {
 			// Generate a random number			
-			String newNumber = generateCIFormatNumber(2023, random.nextInt(1000000));
+			String CInewNumber = generateCIFormatNumber(2023, random.nextInt(1000000));
 
 			// Check for duplicates
-			if (!generatesNumbers.contains(newNumber)) {
+			if (!generatesCINumbers.contains(CInewNumber)) {
 				// Add the unique number to the set
-				generatesNumbers.add(newNumber);
+				generatesCINumbers.add(CInewNumber);
 
 				// Perform actions with the generated number, e.g., input it into a text field
 				WebElement numberInput = driver.findElement(By.xpath("//input[@name='name']"));
-				numberInput.sendKeys(newNumber);
+				numberInput.sendKeys(CInewNumber);
 
 				// Press Enter to submit the value (modify as needed)
 				numberInput.sendKeys(Keys.RETURN);
