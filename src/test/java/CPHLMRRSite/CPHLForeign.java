@@ -45,22 +45,10 @@ public class CPHLForeign {
 		MRRType.click();
 		Select MRRTypeSelection = new Select(MRRType);
 		MRRTypeSelection.selectByVisibleText("Foreign Purchase");
-		Thread.sleep(1000);
-		
-		WebElement RequiredLCCheckbox = driver.findElement(By.xpath("//div[@name='is_lc_required']")); // CI final
-		// submission
-		if (RequiredLCCheckbox.isSelected()) {
-			// If not selected, click to select it
-			RequiredLCCheckbox.click();
-		} else {
-			// If already selected, click to unselect it
-			RequiredLCCheckbox.click();
-		}
-
 		Thread.sleep(2000);
-
-
-		WebElement ForeignMrrSelection = driver.findElement(By.xpath("//div[@name='purchase_order_id']"));
+		
+		
+		WebElement ForeignMrrSelection = driver.findElement(By.xpath("//div[@name='commercial_invoice_id']"));
 		ForeignMrrSelection.click();
 		Thread.sleep(3000);
 
@@ -69,6 +57,8 @@ public class CPHLForeign {
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='ui-id-1']/li[1]/a")));
 		ForeignMRRValueSelect.click();
 		Thread.sleep(2000);
+		
+
 
 		WebElement ForeignMRRSubmit = driver.findElement(By.xpath("//button[@title='Save record']")); // CI final
 		// submission
@@ -82,17 +72,27 @@ public class CPHLForeign {
 		
 
 
-//		WebElement ForeignMRREdit = driver.findElement(By.xpath("//button[@title='Edit record']")); // CI final
-//		// submission
-//		ForeignMRREdit.click();
-//		Thread.sleep(2000);
-//
-//
-//		
-//		WebElement ForeignMRRSubmitAfterEdit = driver.findElement(By.xpath("//button[@title='Save record']")); // CI final
-//		// submission
-//		ForeignMRRSubmitAfterEdit.click();
-//		Thread.sleep(2000);
+		WebElement ForeignMRREdit = driver.findElement(By.xpath("//button[@title='Edit record']")); // CI final
+		// submission
+		ForeignMRREdit.click();
+		Thread.sleep(2000);
+		
+		WebElement RequiredLCCheckbox = driver.findElement(By.xpath("//div[@name='is_lc_required']")); // CI final
+		// submission
+		if (RequiredLCCheckbox.isSelected()) {
+			// If not selected, click to select it
+			RequiredLCCheckbox.click();
+		} else {
+			// If already selected, click to unselect it
+			RequiredLCCheckbox.click();
+		}
+
+		Thread.sleep(2000);
+
+		WebElement ForeignMRRSubmitAfterEdit = driver.findElement(By.xpath("//button[@title='Save record']")); // CI final
+		// submission
+		ForeignMRRSubmitAfterEdit.click();
+		Thread.sleep(2000);
 
 		WebElement MRRReview = driver.findElement(By.xpath("//button[@states='mrr_reviewed']")); // CI final
 		// submission
