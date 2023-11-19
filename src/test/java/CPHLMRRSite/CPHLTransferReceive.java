@@ -3,6 +3,7 @@ package CPHLMRRSite;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -64,7 +65,7 @@ public class CPHLTransferReceive {
 
 		WebDriverWait waitBudget = new WebDriverWait(driver, Duration.ofSeconds(10)); // Adjust the timeout as needed
 		WebElement Transferbudgetselect = waitBudget
-				.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul/li[@class='ui-menu-item'][1]/a")));
+				.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//ul[@id='ui-id-10']/li[1]/a")));
 		Transferbudgetselect.click();
 		Thread.sleep(2000);
 
